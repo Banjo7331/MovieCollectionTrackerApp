@@ -3,10 +3,40 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MovieCollectionTrackerApp"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Movie Collection Tracker" Height="450" Width="800">
     <Grid>
+        <StackPanel Orientation="Vertical" Margin="10">
+            <!-- Tytuł aplikacji -->
+            <TextBlock Text="Movie Collection Tracker" FontSize="24" HorizontalAlignment="Center" Margin="0,0,0,10"/>
 
+            <!-- Lista filmów -->
+            <ListView ItemsSource="{Binding Movies}" SelectedItem="{Binding SelectedMovie}" Margin="0,0,0,10">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Title" DisplayMemberBinding="{Binding Title}" Width="150"/>
+                        <GridViewColumn Header="Genre" DisplayMemberBinding="{Binding Genre}" Width="100"/>
+                        <GridViewColumn Header="Director" DisplayMemberBinding="{Binding Director}" Width="150"/>
+                        <GridViewColumn Header="Year" DisplayMemberBinding="{Binding ReleaseYear}" Width="80"/>
+                        <GridViewColumn Header="Rating" DisplayMemberBinding="{Binding Rating}" Width="80"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <!-- TextBox z Hintem zamiast placeholdera -->
+            <TextBox materialDesign:HintAssist.Hint="Title" Text="{Binding SelectedMovie.Title, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+            <TextBox materialDesign:HintAssist.Hint="Genre" Text="{Binding SelectedMovie.Genre, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+            <TextBox materialDesign:HintAssist.Hint="Director" Text="{Binding SelectedMovie.Director, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+            <TextBox materialDesign:HintAssist.Hint="Year" Text="{Binding SelectedMovie.ReleaseYear, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+            <TextBox materialDesign:HintAssist.Hint="Rating" Text="{Binding SelectedMovie.Rating, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+
+            <!-- Przyciski akcji -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                <Button Content="Add" Command="{Binding AddMovieCommand}" Margin="5"/>
+                <Button Content="Edit" Command="{Binding EditMovieCommand}" Margin="5"/>
+                <Button Content="Delete" Command="{Binding DeleteMovieCommand}" Margin="5"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Window>

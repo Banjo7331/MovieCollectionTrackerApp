@@ -1,0 +1,18 @@
+<Window x:Class="MovieCollectionTrackerApp.Views.EditMovieWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Edit Movie" Height="300" Width="400">
+    <Grid>
+        <StackPanel Margin="10">
+            <TextBlock Text="Edit Movie" FontSize="20" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+            <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+            <TextBox Text="{Binding Genre, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+            <TextBox Text="{Binding Director, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+            <TextBox Text="{Binding ReleaseYear, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+            <TextBox Text="{Binding Rating, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+
+            <Button Content="Save" Click="SaveButton_Click" HorizontalAlignment="Center" Margin="10"/>
+        </StackPanel>
+    </Grid>
+</Window>
+

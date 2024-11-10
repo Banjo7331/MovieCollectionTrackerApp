@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 C:\Users\cylwi\RiderProjects\MovieCollectionTrackerApp\App.xaml
-11407045341
+2-1505068330
 
-41986254454
-1981124507420
-MainWindow.xaml;
+12529367046
+202-2048336650
+MainWindow.xaml;Views\EditMovieWindow.xaml;
 
-True
+False
 

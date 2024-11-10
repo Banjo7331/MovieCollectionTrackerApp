@@ -1,8 +1,34 @@
 {
   "version": 2,
-  "dgSpecHash": "57avPpZg3e4=",
+  "dgSpecHash": "6ijqgJz8EuI=",
   "success": true,
   "projectFilePath": "C:\\Users\\cylwi\\RiderProjects\\MovieCollectionTrackerApp\\MovieCollectionTrackerApp.csproj",
-  "expectedPackageFiles": [],
-  "logs": []
+  "expectedPackageFiles": [
+    "C:\\Users\\cylwi\\.nuget\\packages\\materialdesigncolors\\3.0.0\\materialdesigncolors.3.0.0.nupkg.sha512",
+    "C:\\Users\\cylwi\\.nuget\\packages\\materialdesignthemes\\4.2.1\\materialdesignthemes.4.2.1.nupkg.sha512",
+    "C:\\Users\\cylwi\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\8.0.1\\microsoft.extensions.dependencyinjection.8.0.1.nupkg.sha512",
+    "C:\\Users\\cylwi\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.2\\microsoft.extensions.dependencyinjection.abstractions.8.0.2.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "MovieCollectionTrackerApp depends on MaterialDesignColors (>= 2.2.1) but MaterialDesignColors 2.2.1 was not found. An approximate best match of MaterialDesignColors 3.0.0 was resolved.",
+      "libraryId": "MaterialDesignColors",
+      "targetGraphs": [
+        "net8.0-windows7.0"
+      ]
+    },
+    {
+      "code": "NU1608",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Detected package version outside of dependency constraint: MaterialDesignThemes 4.2.1 requires MaterialDesignColors (>= 2.0.3 && < 3.0.0) but version MaterialDesignColors 3.0.0 was resolved.",
+      "libraryId": "MaterialDesignColors",
+      "targetGraphs": [
+        "net8.0-windows7.0"
+      ]
+    }
+  ]
 }
