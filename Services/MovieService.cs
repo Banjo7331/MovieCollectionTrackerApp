@@ -17,7 +17,7 @@ public class MovieService : IMovieService
 
     public void AddMovie(Movie movie)
     {
-        Console.WriteLine($"Adding Movie: {movie.Title}, Id: {movie.Id}");
+        Console.WriteLine($"Adding Movie: {movie.Title}, Id: {movie.Id} {movie.Category}");
         _context.Movies.Add(movie);
         _context.SaveChanges();
     }

@@ -6,6 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:MovieCollectionTrackerApp.Models"
+        xmlns:viewModels="clr-namespace:MovieCollectionTrackerApp.ViewModels"
         mc:Ignorable="d"
         Title="Movie Collection Tracker" Height="450" Width="800">
     
@@ -46,7 +47,7 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Title" DisplayMemberBinding="{Binding Title}" Width="150" />
-                    <GridViewColumn Header="Genre" DisplayMemberBinding="{Binding Genre}" Width="100" />
+                    <GridViewColumn Header="Category" DisplayMemberBinding="{Binding Category}" Width="100" />
                     <GridViewColumn Header="Director" DisplayMemberBinding="{Binding Director}" Width="150" />
                     <GridViewColumn Header="Year" DisplayMemberBinding="{Binding ReleaseYear}" Width="80" />
                     <GridViewColumn Header="Rating" DisplayMemberBinding="{Binding Rating}" Width="80" />
@@ -71,12 +72,17 @@
                      materialDesign:HintAssist.Hint="Title" 
                      Text="{Binding SelectedMovie.Title, UpdateSourceTrigger=PropertyChanged}" 
                      Margin="5" />
-
             <ComboBox Grid.Row="1" Grid.Column="0" 
-                      ItemsSource="{Binding Source={StaticResource EnumValues}}" 
+                      ItemsSource="{Binding Source={x:Static viewModels:MainViewModel.Categories}}" 
                       SelectedItem="{Binding SelectedMovie.Category}" 
                       materialDesign:HintAssist.Hint="Category" 
+                      DisplayMemberPath="." 
                       Margin="5" />
+            <!-- <ComboBox Grid.Row="1" Grid.Column="0"  -->
+            <!--           ItemsSource="{Binding Source={StaticResource EnumValues}}"  -->
+            <!--           SelectedItem="{Binding SelectedMovie.Category}"  -->
+            <!--           materialDesign:HintAssist.Hint="Category"  -->
+            <!--           Margin="5" /> -->
 
             <TextBox Grid.Row="2" Grid.Column="0" 
                      materialDesign:HintAssist.Hint="Director" 
@@ -99,6 +105,10 @@
             <Button Content="Add" Command="{Binding AddMovieCommand}" Margin="5" />
             <Button Content="Edit" Command="{Binding EditMovieCommand}" Margin="5" />
             <Button Content="Delete" Command="{Binding DeleteMovieCommand}" Margin="5" />
+            <Button Content="View Statistics" 
+                    Command="{Binding OpenStatisticsWindowCommand}" 
+                    HorizontalAlignment="Center" 
+                    Margin="5" />
         </StackPanel>
     </Grid>
 </Window>

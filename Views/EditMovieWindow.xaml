@@ -4,6 +4,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:MovieCollectionTrackerApp.Models"
+        xmlns:viewModels="clr-namespace:MovieCollectionTrackerApp.ViewModels"
         Title="Edit Movie" Height="300" Width="400">
     <Window.Resources>
         <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}" x:Key="EnumValues">
@@ -16,11 +17,16 @@
         <StackPanel Margin="10">
             <TextBlock Text="Edit Movie" FontSize="20" HorizontalAlignment="Center" Margin="0,0,0,10"/>
             <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
-            <ComboBox Grid.Row="1" Grid.Column="0" 
-                      ItemsSource="{Binding Source={StaticResource EnumValues}}" 
-                      SelectedItem="{Binding SelectedMovie.Category}" 
-                      materialDesign:HintAssist.Hint="Category" 
+            <ComboBox ItemsSource="{Binding Source={x:Static viewModels:MainViewModel.Categories}}"
+                      SelectedItem="{Binding Category, UpdateSourceTrigger=PropertyChanged}"
+                      materialDesign:HintAssist.Hint="Category"
+                      DisplayMemberPath="."
                       Margin="5" />
+            <!-- <ComboBox Grid.Row="1" Grid.Column="0"  -->
+            <!--           ItemsSource="{Binding Source={StaticResource EnumValues}}"  -->
+            <!--           SelectedItem="{Binding SelectedMovie.Category}"  -->
+            <!--           materialDesign:HintAssist.Hint="Category"  -->
+            <!--           Margin="5" /> -->
             <TextBox Text="{Binding Director, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
             <TextBox Text="{Binding ReleaseYear, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
             <TextBox Text="{Binding Rating, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>

@@ -35,12 +35,8 @@ public partial class App : Application
     {
         try
         {
-            MessageBox.Show("App is starting..."); // Dodano log
-
             var mainWindow = _serviceProvider.GetRequiredService<MainWindow>();
             mainWindow.DataContext = _serviceProvider.GetRequiredService<MainViewModel>();
-
-            MessageBox.Show("Showing MainWindow..."); // Dodano log
 
             mainWindow.Show();
         }

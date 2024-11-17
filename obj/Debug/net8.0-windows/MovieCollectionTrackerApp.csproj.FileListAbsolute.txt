@@ -137,3 +137,5 @@ C:\Users\cylwi\RiderProjects\again\bin\Debug\net8.0-windows\MovieCollectionTrack
 C:\Users\cylwi\RiderProjects\again\obj\Debug\net8.0-windows\MovieCol.FCCE1DAD.Up2Date
 C:\Users\cylwi\RiderProjects\again\obj\Debug\net8.0-windows\MovieCollectionTrackerApp.genruntimeconfig.cache
 C:\Users\cylwi\RiderProjects\again\obj\Debug\net8.0-windows\ref\MovieCollectionTrackerApp.dll
+C:\Users\cylwi\RiderProjects\again\obj\Debug\net8.0-windows\Views\StatisticWindow.baml
+C:\Users\cylwi\RiderProjects\again\obj\Debug\net8.0-windows\Views\StatisticWindow.g.cs

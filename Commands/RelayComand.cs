@@ -7,16 +7,16 @@ public class RelayCommand : ICommand
     private readonly Action _execute;
     private readonly Func<bool>? _canExecute;
 
-    public event EventHandler? CanExecuteChanged; // Obsługa nullability
+    public event EventHandler? CanExecuteChanged; 
 
     public RelayCommand(Action execute, Func<bool>? canExecute = null)
     {
         _execute = execute ?? throw new ArgumentNullException(nameof(execute));
         _canExecute = canExecute;
-        CanExecuteChanged += delegate { }; // Uniknięcie null dla zdarzenia
+        CanExecuteChanged += delegate { }; 
     }
 
-    public bool CanExecute(object? parameter) // Umożliwienie null dla parametru
+    public bool CanExecute(object? parameter) 
     {
         return _canExecute == null || _canExecute();
     }

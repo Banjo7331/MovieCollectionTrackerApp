@@ -1,4 +1,5 @@
 using System.Windows;
+using MovieCollectionTrackerApp.Models;
 
 namespace MovieCollectionTrackerApp.Views;
 

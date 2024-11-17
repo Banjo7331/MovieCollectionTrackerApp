@@ -1,0 +1,27 @@
+<Window x:Class="MovieCollectionTrackerApp.Views.StatisticWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Statistics" Height="400" Width="400">
+    <Grid Margin="10">
+        <StackPanel>
+            <TextBlock Text="Statistics" FontSize="20" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+            <TextBlock Text="Total Movies:" FontWeight="Bold" Margin="5,10,5,0"/>
+            <TextBlock Text="{Binding TotalMovies}" Margin="5"/>
+            <TextBlock Text="Average Rating:" FontWeight="Bold" Margin="5,10,5,0"/>
+            <TextBlock Text="{Binding AverageRating}" Margin="5"/>
+            <TextBlock Text="Movies by Category:" FontWeight="Bold" Margin="5,10,5,0"/>
+            <ItemsControl ItemsSource="{Binding MoviesByCategory}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Key}" FontWeight="Bold" Margin="5"/>
+                            <TextBlock Text=":" Margin="5"/>
+                            <TextBlock Text="{Binding Value}" Margin="5"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <Button Content="Close" HorizontalAlignment="Center" Margin="10" Click="CloseButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
