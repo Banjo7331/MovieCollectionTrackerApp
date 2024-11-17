@@ -41,18 +41,17 @@ public class MainViewModel : BaseViewModel
 
     private void AddMovie()
     {
-        // Tworzymy nowy obiekt `Movie` z domyślnymi wartościami
         var newMovie = new Movie
         {
-            Title = "New Movie", // Możesz tu ustawić domyślne wartości lub puste pola
-            Genre = "Genre",
-            Director = "Director",
-            ReleaseYear = DateTime.Now.Year,
-            Rating = 0.0
+            Title = string.IsNullOrWhiteSpace(SelectedMovie?.Title) ? "Default Title" : SelectedMovie.Title,
+            Category = SelectedMovie.Category != null ? SelectedMovie.Category : MovieCategory.Default,
+            Director = string.IsNullOrWhiteSpace(SelectedMovie?.Director) ? "Default Director" : SelectedMovie.Director,
+            ReleaseYear = SelectedMovie?.ReleaseYear ?? DateTime.Now.Year,
+            Rating = SelectedMovie?.Rating ?? 0.0
         };
 
-        _movieService.AddMovie(newMovie); // Dodajemy nowy film do serwisu
-        LoadMovies(); // Odświeżamy listę filmów
+        _movieService.AddMovie(newMovie); 
+        LoadMovies(); 
     }
 
     private void UpdateMovie()
@@ -80,12 +79,12 @@ public class MainViewModel : BaseViewModel
 
         var editWindow = new EditMovieWindow
         {
-            DataContext = SelectedMovie // Ustawienie wybranego filmu jako DataContext
+            DataContext = SelectedMovie 
         };
 
-        if (editWindow.ShowDialog() == true) // Jeśli użytkownik zapisze zmiany
+        if (editWindow.ShowDialog() == true) 
         {
-            SaveMovie(); // Zapisz zmiany do bazy danych lub listy
+            SaveMovie(); 
         }
     }
 

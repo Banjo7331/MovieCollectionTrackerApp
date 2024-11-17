@@ -4,39 +4,101 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:MovieCollectionTrackerApp.Models"
         mc:Ignorable="d"
         Title="Movie Collection Tracker" Height="450" Width="800">
-    <Grid>
-        <StackPanel Orientation="Vertical" Margin="10">
-            <!-- Tytuł aplikacji -->
-            <TextBlock Text="Movie Collection Tracker" FontSize="24" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+    
+    <Window.Resources>
+        <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}" x:Key="EnumValues">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="local:MovieCategory" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
+    
+    <Grid Margin="10">
+        <!-- Grid Layout Definition -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" /> <!-- Title -->
+            <RowDefinition Height="*" /> <!-- Movie List -->
+            <RowDefinition Height="Auto" /> <!-- Input Fields -->
+            <RowDefinition Height="Auto" /> <!-- Action Buttons -->
+        </Grid.RowDefinitions>
 
-            <!-- Lista filmów -->
-            <ListView ItemsSource="{Binding Movies}" SelectedItem="{Binding SelectedMovie}" Margin="0,0,0,10">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Title" DisplayMemberBinding="{Binding Title}" Width="150"/>
-                        <GridViewColumn Header="Genre" DisplayMemberBinding="{Binding Genre}" Width="100"/>
-                        <GridViewColumn Header="Director" DisplayMemberBinding="{Binding Director}" Width="150"/>
-                        <GridViewColumn Header="Year" DisplayMemberBinding="{Binding ReleaseYear}" Width="80"/>
-                        <GridViewColumn Header="Rating" DisplayMemberBinding="{Binding Rating}" Width="80"/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" /> <!-- Full Width -->
+        </Grid.ColumnDefinitions>
 
-            <!-- TextBox z Hintem zamiast placeholdera -->
-            <TextBox materialDesign:HintAssist.Hint="Title" Text="{Binding SelectedMovie.Title, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
-            <TextBox materialDesign:HintAssist.Hint="Genre" Text="{Binding SelectedMovie.Genre, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
-            <TextBox materialDesign:HintAssist.Hint="Director" Text="{Binding SelectedMovie.Director, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
-            <TextBox materialDesign:HintAssist.Hint="Year" Text="{Binding SelectedMovie.ReleaseYear, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
-            <TextBox materialDesign:HintAssist.Hint="Rating" Text="{Binding SelectedMovie.Rating, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+        <!-- Title -->
+        <TextBlock Text="Movie Collection Tracker" 
+                   FontSize="24" 
+                   FontWeight="Bold" 
+                   HorizontalAlignment="Center" 
+                   Margin="0,0,0,10" 
+                   Grid.Row="0" />
 
-            <!-- Przyciski akcji -->
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                <Button Content="Add" Command="{Binding AddMovieCommand}" Margin="5"/>
-                <Button Content="Edit" Command="{Binding EditMovieCommand}" Margin="5"/>
-                <Button Content="Delete" Command="{Binding DeleteMovieCommand}" Margin="5"/>
-            </StackPanel>
+        <!-- Movie List -->
+        <ListView ItemsSource="{Binding Movies}" 
+                  SelectedItem="{Binding SelectedMovie}" 
+                  Margin="0,0,0,10" 
+                  Grid.Row="1">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Title" DisplayMemberBinding="{Binding Title}" Width="150" />
+                    <GridViewColumn Header="Genre" DisplayMemberBinding="{Binding Genre}" Width="100" />
+                    <GridViewColumn Header="Director" DisplayMemberBinding="{Binding Director}" Width="150" />
+                    <GridViewColumn Header="Year" DisplayMemberBinding="{Binding ReleaseYear}" Width="80" />
+                    <GridViewColumn Header="Rating" DisplayMemberBinding="{Binding Rating}" Width="80" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <!-- Input Fields -->
+        <Grid Grid.Row="2" Margin="0,10,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBox Grid.Row="0" Grid.Column="0" 
+                     materialDesign:HintAssist.Hint="Title" 
+                     Text="{Binding SelectedMovie.Title, UpdateSourceTrigger=PropertyChanged}" 
+                     Margin="5" />
+
+            <ComboBox Grid.Row="1" Grid.Column="0" 
+                      ItemsSource="{Binding Source={StaticResource EnumValues}}" 
+                      SelectedItem="{Binding SelectedMovie.Category}" 
+                      materialDesign:HintAssist.Hint="Category" 
+                      Margin="5" />
+
+            <TextBox Grid.Row="2" Grid.Column="0" 
+                     materialDesign:HintAssist.Hint="Director" 
+                     Text="{Binding SelectedMovie.Director, UpdateSourceTrigger=PropertyChanged}" 
+                     Margin="5" />
+
+            <TextBox Grid.Row="0" Grid.Column="1" 
+                     materialDesign:HintAssist.Hint="Year" 
+                     Text="{Binding SelectedMovie.ReleaseYear, UpdateSourceTrigger=PropertyChanged}" 
+                     Margin="5" />
+
+            <TextBox Grid.Row="1" Grid.Column="1" 
+                     materialDesign:HintAssist.Hint="Rating" 
+                     Text="{Binding SelectedMovie.Rating, UpdateSourceTrigger=PropertyChanged}" 
+                     Margin="5" />
+        </Grid>
+
+        <!-- Action Buttons -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+            <Button Content="Add" Command="{Binding AddMovieCommand}" Margin="5" />
+            <Button Content="Edit" Command="{Binding EditMovieCommand}" Margin="5" />
+            <Button Content="Delete" Command="{Binding DeleteMovieCommand}" Margin="5" />
         </StackPanel>
     </Grid>
 </Window>

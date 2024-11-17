@@ -1,7 +1,9 @@
 ﻿using System.Windows;
+using Microsoft.EntityFrameworkCore;
 using MovieCollectionTrackerApp.Services;
 using MovieCollectionTrackerApp.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
+using MovieCollectionTrackerApp.Data;
 
 namespace MovieCollectionTrackerApp;
 
@@ -21,7 +23,9 @@ public partial class App : Application
 
     private void ConfigureServices(IServiceCollection services)
     {
-        // Rejestracja serwisów i widoków jako singletony
+        services.AddDbContext<MovieDbContext>(options =>
+            options.UseMySql("Server=localhost;Database=movie_app_db;User=springstudent;Password=springstudent;", 
+                new MySqlServerVersion(new Version(8, 0, 23))));
         services.AddSingleton<IMovieService, MovieService>();
         services.AddSingleton<MainViewModel>();
         services.AddSingleton<MainWindow>(); // Dodajemy MainWindow jako singleton
